@@ -1,0 +1,6 @@
+if errors
+	.alert.alert-danger
+		h4 Please correct the errors below:
+		ul.errors
+			each error in errors
+				li= error.message
