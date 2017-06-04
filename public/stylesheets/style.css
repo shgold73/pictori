@@ -5,20 +5,21 @@ body {
 	font-family: 'Capriola', sans-serif;
 }
 
-.navbar {
-	padding-right: 20px;
-	font-size: 16px;
-}
-
-.logo {
-	margin-left: 28px;
+.button {
 	margin-top: 20px;
-	display: inline-block;
 }
 
-.tagline {
-	margin-left: 100px;
-	display: inline-block;
+.form {
+	display:block;
+    width:40%;
+    margin:0 auto;
+    font-size: 16px;
+ }
+
+.greeting {
+	font-size: 10px
+	text-align: center;
+
 }
 
 .heading {
@@ -27,26 +28,34 @@ body {
 	padding-bottom: 30px;
 	font-size: 32px;
 }
-.form {
-	display:block;
-    width:40%;
-    margin:0 auto;
-    font-size: 16px;
-  }
 
-.button {
-	margin-top: 20px;
+.homepage {
+	margin-left: 80px;
 }
 
 .label {
 	padding-top: 15px;
 }
 
-.greeting {
-	font-size: 10px
-	text-align: center;
-
+.logo {
+	margin-left: 28px;
+	margin-top: 20px;
+	display: inline-block;
 }
+
+.navbar {
+	padding-right: 20px;
+	font-size: 16px;
+}
+
+.tagline {
+	margin-left: 100px;
+	display: inline-block;
+}
+
+
+
+
 
 
 

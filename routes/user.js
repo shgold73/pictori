@@ -74,7 +74,7 @@ router.post('/sign-up', function(request, response) {
 
 // Log in.
 router.get('/log-in', function(request, response) {
-	response.render('user/log_in')
+	response.render('user/log_in');
 });
 
 router.post('/log-in', passport.authenticate('local'), function(request, response) {
@@ -84,7 +84,8 @@ router.post('/log-in', passport.authenticate('local'), function(request, respons
 
 // Log out.
 router.get('/log-out', function(request, response) {
-	response.render('user/log_out');
+	request.logout();
+	response.redirect('/');
 });
 
 
