@@ -2,17 +2,18 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title My Site
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    title Pictory
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Capriola")
   body
-    nav.navbar.navbar-default
+    nav.navbar.navbar-inverse
       .container
         .navbar-header
-          a.navbar-brand(href='/') My Site
-          
-      ul.nav.navbar-nav.navbar-left
+      p.logo: a(href='/index')
+        img(src='/images/logo2.png') 
+      p.tagline: img(src='/images/tagline.png')
+      ul.nav.navbar-nav.navbar-right
         if  currentUser
           li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
           li: a(href='/user/log-out') Log Out
@@ -21,11 +22,4 @@ html
           li: a(href='/user/log-in') Log In
     block body
 
-  // ul.nav.navbar-nav.navbar-right 
-  //       if  currentUser
-  //         li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
-  //         li: a(href='/user/log-out') Log Out
-  //       else
-  //       li: a(href='/user/sign-up') Sign Up
-  //       li: a(href='/user/log-in') Log In
-  //   block body
+

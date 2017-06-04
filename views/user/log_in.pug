@@ -1,13 +1,15 @@
 extends ../layout
 
 block body
-	h1 Log In
+	h1.heading Log In
 	form(action='/user/log-in', method='post')
-		.form-group
-			label(for='username') Email
-			input.form-control(name='username', autofocus)
-		.form-group
-			label(for='password') Password
-			input.form-control(name='password', type='password')
-		.form-group
-			input.btn.btn-primary.btn-lg(type='submit', value='Log In')
+		div.form
+			.form-horizontal
+				control-label.col-sm-5(for='username') Email
+				input.form-group(name='username', autofocus)
+			.form-horizontal
+				control-label.col-sm-5(for='password') Password
+				input.form-group(name='password', type='password')
+			.form-horizontal.button
+				control-label.col-sm-4
+				input.btn.btn-default(type='submit', value='Log In')

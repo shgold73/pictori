@@ -40,12 +40,16 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+
+
 // Sign up.
 router.get('/sign-up', function(request, response) {
 	response.render('user/sign_up', {
 		user: {}
 	})
 });
+
+
 
 router.post('/sign-up', function(request, response) {
 	bcrypt.hash(request.body.password, 10, function(error, password) {
@@ -80,9 +84,8 @@ router.post('/log-in', passport.authenticate('local'), function(request, respons
 
 // Log out.
 router.get('/log-out', function(request, response) {
-	request.logout();
-	//response.redirect('/');
-	response.send('YOU ARE LOGED OUT')
+	response.render('user/log_out');
 });
+
 
 module.exports = router;
