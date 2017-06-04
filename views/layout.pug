@@ -1,31 +1,33 @@
+
 doctype html
 html
   head
-    meta(charset='UTF-8')
-    title My Site
+    title Pictori
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    nav.navbar.navbar-default
-      .container
-        .navbar-header
-          a.navbar-brand(href='/') My Site
-          
-      ul.nav.navbar-nav.navbar-left
-        if  currentUser
-          li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
-          li: a(href='/user/log-out') Log Out
-        else
-          li: a(href='/user/sign-up') Sign Up
-          li: a(href='/user/log-in') Log In
-    block body
+    script(src='https://use.fontawesome.com/a3a71a0323.js')
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
+    script(src='/javascripts/cookies.js')
+    script(src='/javascripts/application.js')
 
-  // ul.nav.navbar-nav.navbar-right 
-  //       if  currentUser
-  //         li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
-  //         li: a(href='/user/log-out') Log Out
-  //       else
-  //       li: a(href='/user/sign-up') Sign Up
-  //       li: a(href='/user/log-in') Log In
-  //   block body
+  body
+    .fluid-container
+      .row
+        .col-lg-4.col-md-4.navbar-right
+          ul.nav.navbar-nav.navbar-right
+            if currentUser
+              li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
+              li: a(href='/user/logout') Log Out
+            else
+              li: a(href='/user/signup') Sign Up
+              li: a(href='/user/login') Log In
+      .row
+        .col-lg-12.col-md-12.navbar
+          ul.nav.navbar-nav.navbar
+            a.btn-default.fa.fa-1x.fa-camera.headnav(href='/imagepost/new') Upload
+            a.btn-default.fa.fa-1x.fa-home.headnav(href='/') Home
+            a.btn-default.fa.fa-1x.fa-user.headnav(href='/myimagepost') My Posts
+    .fluid-container
+      .row
+        block body

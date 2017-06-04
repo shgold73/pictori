@@ -1,0 +1,17 @@
+extends ../layout
+
+block body
+	h1 Upload new Image Post
+	include ../errors
+	form(action='/imagepost', method='post', enctype='multipart/form-data')
+		.form-group
+			label(for='title') Title
+			input.form-control(name='title', autofocus)
+		.form-group
+			label(for='body') Pic Stori
+			textarea.form-control(name='body')
+		.form-group
+			label(for='image') Image
+			input.form-control(name='image', type='file')
+		.form-group
+			input.btn.btn-primary.btn-lg(type='submit', value='Create')
