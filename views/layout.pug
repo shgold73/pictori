@@ -1,11 +1,18 @@
+
 doctype html
 html
   head
+
     meta(charset='UTF-8')
     title Pictory
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Capriola")
+    script(src='https://use.fontawesome.com/a3a71a0323.js')
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
+    script(src='/javascripts/cookies.js')
+    script(src='/javascripts/application.js')
   body
     nav.navbar.navbar-inverse
       .container
@@ -20,6 +27,11 @@ html
         else
           li: a(href='/user/sign-up') Sign Up
           li: a(href='/user/log-in') Log In
-    block body
+             .col-lg-12.col-md-12.navbar
+      ul.nav.navbar-nav.navbar
+        a.btn-default.fa.fa-1x.fa-camera.headnav(href='/imagepost/new') Upload
+        a.btn-default.fa.fa-1x.fa-home.headnav(href='/') Home
+        a.btn-default.fa.fa-1x.fa-user.headnav(href='/myimagepost') My Posts
+  block body
 
 
