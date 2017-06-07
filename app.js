@@ -41,6 +41,16 @@ app.use('/',          require('./routes/index'));
 app.use('/user',      require('./routes/user'));
 app.use('/imagepost',require('./routes/imagepost'))
 
+// //Comments
+
+// app.post('/Comments',function(request,response){
+//   console.log("ravirocks");
+//   foo();
+// })
+
+// var foo = function(){
+//   console.log("lllll");
+// }
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

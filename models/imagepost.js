@@ -45,15 +45,27 @@ module.exports = function(sequelize, DataTypes) {
 				return(`${this.imageUrl}-thumbnail`);
 			}
 
-	  }
-		// classMethods: {
-  //     		associate: function(models) {
-  //       		models.imagepost.belongsTo(models.user);
-  //       		//models.post.hasMany(models.comment);
-  //     },
-  // }
-			
-   
+	  },
+		classMethods: {
+      		associate: function(models) {
+        		//models.imagepost.belongsTo(models.user);
+        		models.imagepost.hasMany(models.comment);
+       		},
+		findWithImagepostId: function(imagepostId) {
+				return(this.findAll({
+					where: {
+						imagepostId: imagepostId
+					},
+					include: [
+						sequelize.models.user,
+						sequelize.models.comment
+					],
+					order: [
+						[sequelize.models.comment, 'createdAt', 'DESC']
+					]
+				}));
+			}
+		}	
 	}));
 
 };
