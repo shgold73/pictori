@@ -1,7 +1,8 @@
 var express  = require('express');
 var passport = require('passport');
 var local    = require('passport-local');
-var bcrypt   = require('bcrypt');
+// use bcrypt for all devs minus kathy
+var bcrypt   = require('bcryptjs');
 var models   = require('../models/index');
 var User     = models.user;
 var router   = express.Router();
