@@ -49,11 +49,12 @@ module.exports = function(sequelize, DataTypes) {
 		classMethods: {
        		associate: function(models) {
          		models.imagepost.belongsTo(models.user);
-         		//models.post.hasMany(models.comment);
+         		models.imagepost.hasMany(models.comment);
        },
    }
 			
-   
+  
+
 	}));
 
 };

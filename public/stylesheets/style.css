@@ -1,6 +1,6 @@
 body {
 	padding: 10px;
-	background-image: url("/images/whiteBoxLight.png");
+	
 	background-size: cover;
 	font-family: 'Capriola', sans-serif;
 }
@@ -44,7 +44,7 @@ body {
 }
 
 .navbar {
-	padding-right: 20px;
+	padding-right: 10px;
 	font-size: 16px;
 }
 
@@ -53,11 +53,121 @@ body {
 	display: inline-block;
 }
 
+.navbar-inverse {
+	
+	width: 100%;
+}
 
 
 
 
+.navbarrow	{
+margin: 5px;
 
+}
+
+.headnav {
+	margin:25px;
+	font: 30px;
+
+}
+
+/*.navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+*/
+
+
+.imagepost {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: flex-start;
+	
+	margin:10px;
+}
+
+.imagepost2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.commenttextarea {
+	min-width: 500px;
+}
+
+.imagepost3 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+
+p {
+	word-wrap: break-word;
+}
+
+.imagepost4 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	border:solid grey 1px;
+	margin-top:15px;
+	padding: 10px;
+	max-width: 525px;
+}
+
+
+.imagepost5 {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	
+	margin-top:1px;
+	padding: 2px;
+	max-width: 520px;
+}
+
+.imagepost6 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	margin-top:1px;
+	padding: 2px;
+	
+}
+
+
+.commenttext1 {
+	font-size: small;
+	color:indianred;
+	font-family: arial;
+	font-style: bold;
+}
+
+
+.commenttext {
+	font-size: small;
+	font-family: arial;
+	color:grey;
+	font:bold;
+}
+
+a {
+color: indianred;
+
+}
 
 
 

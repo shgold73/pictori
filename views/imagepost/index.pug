@@ -8,20 +8,24 @@ block body
 					each imagepost in imageposts
 						.imagepost2
 							.imagepost4
-								h= imagepost.title
-								h5= imagepost.userId
+								h5= imagepost.title
+								p= imagepost.body
 								if imagepost.imageFilename
 									p: img(src=imagepost.imageThumbnailUrl)
-								p= imagepost.body
-								p= imagepost.id
 									.imagepost3
 										a.btn-default.fa.fa-heart-o(href='/')
+								ul
+									each comment in	imagepost.comments
+										.imagepost5
+											p.commenttext=comment.author+' - '
+											p.commenttext1=comment.body		
 								form(action='/imagepost/comments',method='post')
 									.form-group
+										input.form-control(name='imagepostid', type="hidden",value=imagepost.id ,autofocus)
 										label(for='body')
-										textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...')
+										textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...',maxlength='100')
 									.form-group
-										input.btn.btn-primary.btn-md(type='submit',value='Comment')
+										input.btn.btn-primary.btn-sm(type='submit', value='Add Comment')
 	else
 		h2 No Pic Posts For You
 		p Sorry,No Posts could be found

@@ -14,24 +14,26 @@ html
     script(src='/javascripts/cookies.js')
     script(src='/javascripts/application.js')
   body
-    nav.navbar.navbar-inverse
-      .container
-        .navbar-header
-      p.logo: a(href='/')
-        img(src='/images/logo2.png') 
-      p.tagline: img(src='/images/tagline.png')
-      ul.nav.navbar-nav.navbar-right
-        if  currentUser
-          li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
-          li: a(href='/user/log-out') Log Out
-        else
-          li: a(href='/user/sign-up') Sign Up
-          li: a(href='/user/log-in') Log In
-             .col-lg-12.col-md-12.navbar
-      ul.nav.navbar-nav.navbar
-        a.btn-default.fa.fa-1x.fa-camera.headnav(href='/imagepost/new') Upload
-        a.btn-default.fa.fa-1x.fa-home.headnav(href='/') Home
-        a.btn-default.fa.fa-1x.fa-user.headnav(href='/myimagepost') My Posts
+    .container
+      .row
+        .col-lg-12.col-md-12.col-sm-12
+          .navbar-header.nav.navbar.navbar-inverse
+            p.logo: a(href='/')
+              img(src='/images/logo2.png') 
+            p.tagline: img(src='/images/tagline.png')
+            ul.nav.navbar-nav.navbar-right
+              if  currentUser
+                li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
+                li: a(href='/user/log-out') Log Out
+              else
+                li: a(href='/user/sign-up') Sign Up
+                li: a(href='/user/log-in') Log In
+      .row
+        .col-lg-12.col-md-12.col-sm-12
+          .imagepost6
+            a.btn-default.fa.fa-1x.fa-camera.headnav(href='/imagepost/new') Upload
+            a.btn-default.fa.fa-1x.fa-home.headnav(href='/imagepost') Home
+            a.btn-default.fa.fa-1x.fa-user.headnav(href='/myimagepost') My Posts       
   block body
 
 
