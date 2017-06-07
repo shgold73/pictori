@@ -1,17 +1,17 @@
 extends ../layout
 
 block body
-	h1 Upload new Image Post
+	h1 Upload New Image Post
 	include ../errors
 	form(action='/imagepost', method='post', enctype='multipart/form-data')
-		.form-group
-			label(for='title') Title
-			input.form-control(name='title', autofocus)
-		.form-group
+		.form-horizontal
+			control-label.col-sm-5(for='title') Title
+			input.form-c(name='title', autofocus)
+		.form-horizontal
 			label(for='body') Pic Stori
 			textarea.form-control(name='body')
-		.form-group
+		.form-horizontal
 			label(for='image') Image
 			input.form-control(name='image', type='file')
-		.form-group
+		.form-horizontal.button
 			input.btn.btn-primary.btn-lg(type='submit', value='Create')
