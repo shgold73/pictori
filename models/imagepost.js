@@ -45,15 +45,16 @@ module.exports = function(sequelize, DataTypes) {
 				return(`${this.imageUrl}-thumbnail`);
 			}
 
-	  }
-		// classMethods: {
-  //     		associate: function(models) {
-  //       		models.imagepost.belongsTo(models.user);
-  //       		//models.post.hasMany(models.comment);
-  //     },
-  // }
+	  },
+		classMethods: {
+       		associate: function(models) {
+         		models.imagepost.belongsTo(models.user);
+         		//models.post.hasMany(models.comment);
+       },
+   }
 			
    
 	}));
 
 };
+

@@ -1,6 +1,7 @@
 {
   "development": {
     "database": "myinstagram",
+    "password": "test",
     "dialect":  "postgres"
   },
   "test": {

@@ -54,10 +54,11 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // cd 
+        models.user.hasMany(models.imagepost);
       }
     }
-  })
+  });
 
   return(User);
 };
+

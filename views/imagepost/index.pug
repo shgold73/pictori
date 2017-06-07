@@ -8,7 +8,8 @@ block body
 					each imagepost in imageposts
 						.imagepost2
 							.imagepost4
-								h5= imagepost.title
+								h= imagepost.title
+								h5= imagepost.userId
 								if imagepost.imageFilename
 									p: img(src=imagepost.imageThumbnailUrl)
 								p= imagepost.body
