@@ -19,9 +19,9 @@ block body
 											a.btn-default.fa.fa-heart-o(href='/')
 							div.center
 								form(action=`/myimagepost/${imagepost.id}/delete`, method='post')
-									input.a.btn.btn-default(type='submit', value = 'Delete')
+									input.a.btn.btn-default.padding(type='submit', value = 'Delete')
 								
-									a.btn.btn-default(href=`/myimagepost/${imagepost.id}/edit`) Edit
+									a.btn.btn-default.padding(href=`/myimagepost/${imagepost.id}/edit`) Edit
 									n-md(type='submit',value='Comment')
 		else
 			h2 Please log in
