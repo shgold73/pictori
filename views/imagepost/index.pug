@@ -2,13 +2,14 @@ extends ../layout
 
 block body
 	if imageposts
-		div(class="row")
+		div.center(class="row")
 			div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
 				.list-group
 					each imagepost in imageposts
 						.imagepost2
 							.imagepost4
 								h5= imagepost.title
+								p= imagepost.author 
 								p= imagepost.body
 								if imagepost.imageFilename
 									p: img(src=imagepost.imageThumbnailUrl)
@@ -17,15 +18,14 @@ block body
 								ul
 									each comment in	imagepost.comments
 										.imagepost5
-											p.commenttext=comment.author+' - '
-											p.commenttext1=comment.body		
+											p.author.commenttext=comment.author+' - '
+											p=comment.body		
 								form(action='/imagepost/comments',method='post')
 									.form-group
 										input.form-control(name='imagepostid', type="hidden",value=imagepost.id ,autofocus)
 										label(for='body')
-										textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...',maxlength='100')
-									.form-group
-										input.btn.btn-primary.btn-sm(type='submit', value='Add Comment')
+										textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...',maxlength='150')
+									.form-group.button
+										input.btn.btn-default(type='submit', value='Post')
 	else
-		h2 No Pic Posts For You
-		p Sorry,No Posts could be found
+		h2 Sorry, No Story Found

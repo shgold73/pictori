@@ -1,4 +1,4 @@
-
+//new layout
 doctype html
 html
   head
@@ -8,32 +8,34 @@ html
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Capriola")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Text+Me+One")
     script(src='https://use.fontawesome.com/a3a71a0323.js')
     script(src='/javascripts/jquery.js')
-    script(src='/javascripts/bootstrap.js')
-    script(src='/javascripts/cookies.js')
-    script(src='/javascripts/application.js')
+    //script(src='/javascripts/bootstrap.js')
+    //script(src='/javascripts/cookies.js')
+    //script(src='/javascripts/application.js')
   body
-    .container
+    .container-fluid
+
+      .navbar-header.nav.navbar
+        p.logo: a(href='/imagepost')
+          img(src='/images/logo-blk.png') 
       .row
-        .col-lg-12.col-md-12.col-sm-12
-          .navbar-header.nav.navbar.navbar-inverse
-            p.logo: a(href='/')
-              img(src='/images/logo2.png') 
-            p.tagline: img(src='/images/tagline.png')
-            ul.nav.navbar-nav.navbar-right
-              if  currentUser
-                li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
-                li: a(href='/user/log-out') Log Out
-              else
-                li: a(href='/user/sign-up') Sign Up
-                li: a(href='/user/log-in') Log In
+          ul.nav.navbar-nav.navbar-right.navbar1
+            if  currentUser
+              li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
+              li: a(href='/user/log-out') Log Out        
+            else
+              li: a(href='/user/sign-up') Sign Up
+              li: a(href='/user/log-in') Log In          
       .row
-        .col-lg-12.col-md-12.col-sm-12
+        .col-xs-12.col-md-12.col-lg-12
           .imagepost6
-            a.btn-default.fa.fa-1x.fa-camera.headnav(href='/imagepost/new') Upload
-            a.btn-default.fa.fa-1x.fa-home.headnav(href='/imagepost') Home
-            a.btn-default.fa.fa-1x.fa-user.headnav(href='/myimagepost') My Posts       
+            a.headnav(href='/imagepost') 
+              img(src='/images/allstoriesSM.png')
+            a.headnav(href='/myimagepost') 
+              img(src='/images/mystoriesSM.png')
+            a.headnav(href='/imagepost/new') 
+              img(src='/images/addstorySM.png')     
+    p.center: img(src='/images/line.png')  
   block body
-
-

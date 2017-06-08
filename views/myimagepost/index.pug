@@ -1,31 +1,27 @@
 extends ../layout
 
 block body
-	h1 MY Personal Image Posts
-	if imageposts
-		div(class="row")
-			div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
-				.list-group
-					each imagepost in imageposts
-						.imagepost2
-							.imagepost4
-								h5= imagepost.title
-								if imagepost.imageFilename
-									p: img(src=imagepost.imageThumbnailUrl)
-								p= imagepost.body
-								p= imagepost.id
-									.imagepost3
-										a.btn-default.fa.fa-heart-o(href='/')
-						form(action=`/myimagepost/${imagepost.id}/delete`, method='post')
-							input.a.btn.btn-primary.btn-lg(type='submit', value = 'Delete')
-						
-							a.btn.btn-primary.btn-lg(href=`/myimagepost/${imagepost.id}/edit`) EDIT
-								// form(action='/imagepost/comments',method='post')
-								// 	.form-group
-								// 		label(for='body')
-								// 		textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...')
-								// 	.form-group
-								// 		input.btn.btn-primary.btn-md(type='submit',value='Comment')
-	else
-		h2 No Pic Posts For You
-		p Sorry,No Posts could be found
+	div.center
+		h1 My Stories
+		if imageposts
+			div.center(class="row")
+				div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
+					.list-group
+						each imagepost in imageposts
+							.imagepost2
+								.imagepost4
+									h5= imagepost.title
+									if imagepost.imageFilename
+										p: img(src=imagepost.imageThumbnailUrl)
+									p= imagepost.body
+									p= imagepost.id
+										.imagepost3
+											a.btn-default.fa.fa-heart-o(href='/')
+							div.center
+								form(action=`/myimagepost/${imagepost.id}/delete`, method='post')
+									input.a.btn.btn-default(type='submit', value = 'Delete')
+								
+									a.btn.btn-default(href=`/myimagepost/${imagepost.id}/edit`) Edit
+									n-md(type='submit',value='Comment')
+		else
+			h2 Please log in
