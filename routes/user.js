@@ -2,7 +2,7 @@ var express  = require('express');
 var passport = require('passport');
 var local    = require('passport-local');
 // use bcrypt for all devs minus kathy
-var bcrypt   = require('bcryptjs');
+var bcrypt   = require('bcrypt');
 var models   = require('../models/index');
 var User     = models.user;
 var router   = express.Router();
@@ -56,7 +56,7 @@ router.post('/sign-up', function(request, response) {
 	bcrypt.hash(request.body.password, 10, function(error, password) {
 		User.create({
 			email:    request.body.email,
-			password: password,
+			password: request.body.password,
 			firstname:     request.body.firstname,
 			lastname: request.body.lastname
 		}).then(function(user) {

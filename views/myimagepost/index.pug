@@ -1,27 +1,36 @@
 extends ../layout
 
 block body
-	div.center
-		h1 My Stories
+
+	
+		h1.myimagepostheading My Stories
 		if imageposts
-			div.center(class="row")
-				div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
+			div(class="row")
+				div(class="col-lg-12 col-md-12 col-sm-12 col-xs-12")
 					.list-group
 						each imagepost in imageposts
-							.imagepost2
-								.imagepost4
-									h5= imagepost.title
-									if imagepost.imageFilename
-										p: img(src=imagepost.imageThumbnailUrl)
-									p= imagepost.body
-									p= imagepost.id
-										.imagepost3
-											a.btn-default.fa.fa-heart-o(href='/')
-							div.center
-								form(action=`/myimagepost/${imagepost.id}/delete`, method='post')
-									input.a.btn.btn-default.padding(type='submit', value = 'Delete')
-								
-									a.btn.btn-default.padding(href=`/myimagepost/${imagepost.id}/edit`) Edit
-									n-md(type='submit',value='Comment')
+							.imagepost7
+								div(class="col-lg-4 col-md-4 col-sm-12 col-xs-12")
+									.imagepost4
+										h5= imagepost.title
+										
+										if imagepost.imageFilename
+											p: img.imagesize(src=imagepost.imageThumbnailUrl)
+										form.imagepost11(action=`/myimagepost/${imagepost.id}/delete`, method='post')
+											input.a.btn.btn-primary.btn-xs(type='submit', value = 'Delete')
+											a.btn.btn-primary.btn-xs(href=`/myimagepost/${imagepost.id}/edit`) Edit
+										.tagtext
+											each tag in imagepost.tags
+
+												h5.tagtext1.fa.fa-tag= tag.tag
+										form(action='/myimagepost/tags',method='post')
+											.form-group
+												input.form-control(name='imagepostid', type="hidden",value=imagepost.id ,autofocus)
+												label(for='tags')
+												input.form-control(name='tags', placeholder='Add Tags',maxlength='25')
+											.form-group
+												input.fa.fa-tag(type='submit')
 		else
-			h2 Please log in
+			h2 No Pic Posts For You
+			p Sorry,No Posts could be found
+

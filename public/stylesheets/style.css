@@ -20,11 +20,37 @@ body {
 	margin-top: 20px;
 }
 
+
+
 .center {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.tagtext{
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.tagtext1{
+	margin:5px;
+	padding: 5px;
+	border:solid 1px white;
+	font-size: small;
+	color: white;
+	background: grey;
+	border-radius: 5px;
+}
+
+.heading {
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	font-size: 32px;
+
 }
 
 .commenttext {
@@ -115,10 +141,10 @@ body {
 .imagepost4 {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
 	border:solid grey 1px;
-	margin-top:15px;
+	margin:15px;
 	padding: 10px;
 	max-width: 525px;
 }
@@ -136,18 +162,62 @@ body {
 .imagepost6 {
 	display: flex;
 	flex-direction: row;
+
 	justify-content: center;
 	align-items: center;
 }
 
 .label {
 	padding-top: 15px;
+
+	justify-content: flex-start;
+	align-items: flex-start;
+	
+	margin-top:1px;
+	padding: 2px;
+	max-width: 520px;
+}
+
+
+.imagepost11 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	margin: 10px;
+	padding: 10px;
+	max-width: 520px;
+}
+
+
+.imagesize {
+ width: 250px;
+ height: 250px;
+
+}
+.commenttext1 {
+	font-size: small;
+	color:indianred;
+	font-family: arial;
+	font-style: bold;
+
 }
 
 .logo {
 	margin-top: 20px;
 }
 
+
+.myimagepostheading {
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+}
 
 .navbar1 {
 	display: flex;

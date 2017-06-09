@@ -15,8 +15,13 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			validate: {
 				notEmpty: {
-					msg: 'Body is required'
+					msg: 'Pic Story is required'
+				},
+				len:{
+					args: [0,50],
+					msg:  'Pic Story cannot be greater than 150 charcters'
 				}
+
 			}
 		},
 	
@@ -50,6 +55,7 @@ module.exports = function(sequelize, DataTypes) {
        		associate: function(models) {
          		models.imagepost.belongsTo(models.user);
          		models.imagepost.hasMany(models.comment);
+         		models.imagepost.hasMany(models.tag);
        },
    }
 			
