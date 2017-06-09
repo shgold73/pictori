@@ -9,19 +9,22 @@ var uploadHandler = multer({dest: 'public/images/imageposts'});
 var router        = express.Router();
 
 //Get All the Posts from DB
-
-
 router.get('/', function(req, res) {
-	Imagepost.findAll({
-		include:[Comment]
-	}).then(function(result) {
-		console.log("Ok..now look for comments");
+	if(req.user){
+		Imagepost.findAll({
+			include:[User,Comment]
+		}).then(function(result) {
+			console.log("Ok..now look for comments");
 			res.render('imagepost/index', {
 			imageposts: result
 			})
-			//console.log(JSON.stringify(result))
+				//console.log(JSON.stringify(result))
 		});
-	});
+	}
+	else{
+		res.redirect('/user/log-in');
+	}
+});
 
 
 // New.

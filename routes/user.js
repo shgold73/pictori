@@ -55,7 +55,7 @@ router.post('/sign-up', function(request, response) {
 	bcrypt.hash(request.body.password, 10, function(error, password) {
 		User.create({
 			email:    request.body.email,
-			password: password,
+			password: request.body.password,
 			firstname:     request.body.firstname,
 			lastname: request.body.lastname
 		}).then(function(user) {

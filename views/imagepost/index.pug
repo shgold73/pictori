@@ -10,6 +10,8 @@ block body
 							.imagepost4
 								h5= imagepost.title
 								p= imagepost.body
+
+								h5= imagepost.user.firstname + ' '+imagepost.user.lastname
 								if imagepost.imageFilename
 									p: img(src=imagepost.imageThumbnailUrl)
 									.imagepost3

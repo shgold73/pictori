@@ -16,7 +16,12 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				notEmpty: {
 					msg: 'Body is required'
+				},
+				len:{
+					args: [1,150],
+					msg:  'Comments cannot be greater than 150 charcters'
 				}
+
 			}
 		},
 	
@@ -50,6 +55,7 @@ module.exports = function(sequelize, DataTypes) {
        		associate: function(models) {
          		models.imagepost.belongsTo(models.user);
          		models.imagepost.hasMany(models.comment);
+         		models.imagepost.hasMany(models.tag);
        },
    }
 			
