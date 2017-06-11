@@ -1,0 +1,27 @@
+extends ../layout
+
+block body
+
+	h1 Search for #[em= query]
+	p #{count} picstories found
+	if imageposts
+		div.center(class="row")
+			div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
+				.list-group
+					each imagepost in imageposts
+						.imagepost2
+							.imagepost4
+								h5= imagepost.imagepost.title
+								p= imagepost.imagepost.author 
+								p= imagepost.imagepost.body
+								h5= imagepost.user.firstname + ' '+imagepost.user.lastname
+								if imagepost.imagepost.imageFilename
+									p: img(src=imagepost.imagepost.imageThumbnailUrl)
+									.imagepost3
+										a.btn-default.fa.fa-heart-o(href='/')
+								.tagtext
+									a.btn.tagtext1.fa.fa-tag(href=`/imagepost/search/?tag=${imagepost.tag}`)= imagepost.tag
+								
+								
+	else
+		h2 Sorry, No Story Found

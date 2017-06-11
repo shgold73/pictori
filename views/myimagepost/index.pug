@@ -21,8 +21,9 @@ block body
 											a.btn.btn-primary.btn-xs(href=`/myimagepost/${imagepost.id}/edit`) Edit
 										.tagtext
 											each tag in imagepost.tags
+												//a.btn.tagtext1.fa.fa-tag(href=`/myimagepost/search/${tag.tag}`)= tag.tag
+												a.btn.tagtext1.fa.fa-tag(href=`/myimagepost/search/?tag=${tag.tag}`)= tag.tag
 
-												h5.tagtext1.fa.fa-tag= tag.tag
 										form(action='/myimagepost/tags',method='post')
 											.form-group
 												input.form-control(name='imagepostid', type="hidden",value=imagepost.id ,autofocus)
@@ -33,4 +34,3 @@ block body
 		else
 			h2 No Pic Posts For You
 			p Sorry,No Posts could be found
-
