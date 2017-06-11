@@ -5,6 +5,7 @@ var models        = require('../models/index');
 var User          = models.user;
 var Imagepost     = models.imagepost;
 var Comment       = models.comment;
+var Tag 		  = models.tag;
 var uploadHandler = multer({dest: 'public/images/imageposts'});
 var router        = express.Router();
 
@@ -12,13 +13,13 @@ var router        = express.Router();
 router.get('/', function(req, res) {
 	if(req.user){
 		Imagepost.findAll({
-			include:[User,Comment]
+			include:[Comment,Tag,User]
 		}).then(function(result) {
 			console.log("Ok..now look for comments");
 			res.render('imagepost/index', {
 			imageposts: result
 			})
-				//console.log(JSON.stringify(result))
+				console.log(JSON.stringify(result))
 		});
 	}
 	else{
@@ -76,5 +77,35 @@ router.post('/comments', function(request, response) {
 		response.redirect('/user/log-in');
 	}
  });
+
+
+// Search.
+router.get('/search', function(req, res) {
+	console.log("Search test ravi");
+	var query     = req.query.tag;
+	console.log(query)
+	//var condition = `%${query}%`;
+	var condition = `${query}`;
+	console.log(condition);
+	console.log("now it should find")
+	Tag.findAndCountAll({
+		include: [Imagepost,User],
+		where: {
+			$or: {
+				tag: {
+					$iLike: condition
+				}
+			}
+		}		   
+	}).then(function(result) {
+		console.log(result.rows);
+		console.log(JSON.stringify(result));
+		res.render('imagepost/search', {
+		query: query,
+		count: result.count,
+		imageposts: result.rows
+		});
+	});
+});
 
 module.exports = router;

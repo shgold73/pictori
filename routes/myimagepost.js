@@ -25,6 +25,45 @@ router.get('/', function(request, response) {
 	}
 });
 
+//Search a tag
+// router.post('/search/:tags', function(request, response) {
+
+// 		console.log('search route hit');
+// 		response.render('myimagepost/search');
+// 	});
+
+//
+// Search.
+router.get('/search', function(req, res) {
+	console.log("Search test ravi");
+	var query     = req.query.tag;
+	console.log(query)
+	//var condition = `%${query}%`;
+	var condition = `${query}`;
+	console.log(condition);
+	console.log("now it should find")
+	Tag.findAndCountAll({
+		include: [Imagepost,User],
+		where: {
+			$or: {
+				tag: {
+					$iLike: condition
+				}
+			}
+		}		   
+	}).then(function(result) {
+		console.log(JSON.stringify(result));
+		res.render('myimagepost/search', {
+		query: query,
+		count: result.count,
+		imageposts: result.rows
+		});
+	});
+});
+
+//
+
+
 
 //Deletes a Imagepost 
 router.post('/:id/delete', function(request, response) {

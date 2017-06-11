@@ -1,0 +1,32 @@
+if imageposts
+	div.center(class="row")
+		div(class="col-lg-12 col-md-10 col-sm-12 col-xs-12")
+			.list-group
+				each imagepost in imageposts
+					.imagepost2
+						.imagepost4
+							h5= imagepost.title
+							p= imagepost.author 
+							p= imagepost.body
+							h5= imagepost.user.firstname + ' '+imagepost.user.lastname
+							.tagtext
+								each tag in imagepost.tags
+									a.btn.tagtext1.fa.fa-tag(href=`/imagepost/search/?tag=${tag.tag}`)= tag.tag
+							if imagepost.imageFilename
+								p: img(src=imagepost.imageThumbnailUrl)
+								.imagepost3
+									a.btn-default.fa.fa-heart-o(href='/')
+							ul
+								each comment in	imagepost.comments
+									.imagepost5
+										p.author.commenttext=comment.author+' - '
+										p=comment.body		
+							form(action='/imagepost/comments',method='post')
+								.form-group
+									input.form-control(name='imagepostid', type="hidden",value=imagepost.id ,autofocus)
+									label(for='body')
+									textarea.form-control.col-md-12.commenttextarea.textarea(name='body', placeholder='Add Comment...',maxlength='150')
+								.form-group.button
+									input.btn.btn-default.padding(type='submit', value='Add')
+else							
+	h2 Sorry, No Story Found
