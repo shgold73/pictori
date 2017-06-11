@@ -12,12 +12,10 @@ router.get('/', function(request, response) {
 		Imagepost.findAll({
 			include: Tag,User,
 			 where: {userId: request.user.id} 
-
 		}).then(function(result) {
 			response.render('myimagepost/index', {
 				imageposts: result
 			});
-
 		});
 	}
 	else{
@@ -25,23 +23,11 @@ router.get('/', function(request, response) {
 	}
 });
 
-//Search a tag
-// router.post('/search/:tags', function(request, response) {
 
-// 		console.log('search route hit');
-// 		response.render('myimagepost/search');
-// 	});
-
-//
-// Search.
+// Search based on Tag.
 router.get('/search', function(req, res) {
-	console.log("Search test ravi");
 	var query     = req.query.tag;
-	console.log(query)
-	//var condition = `%${query}%`;
 	var condition = `${query}`;
-	console.log(condition);
-	console.log("now it should find")
 	Tag.findAndCountAll({
 		include: [Imagepost,User],
 		where: {
@@ -52,7 +38,6 @@ router.get('/search', function(req, res) {
 			}
 		}		   
 	}).then(function(result) {
-		console.log(JSON.stringify(result));
 		res.render('myimagepost/search', {
 		query: query,
 		count: result.count,
@@ -60,10 +45,6 @@ router.get('/search', function(req, res) {
 		});
 	});
 });
-
-//
-
-
 
 //Deletes a Imagepost 
 router.post('/:id/delete', function(request, response) {
@@ -93,19 +74,15 @@ router.post('/:id/edit', function(request, response) {
 	});
 });
 
-
 //POST request to add Tags to imagepost
 router.post('/tags',function(request,response) {
- console.log("In tags loop");	
   Tag.create({
   	tag:         request.body.tags,
   	imagepostId: request.body.imagepostid,
   	userId:      request.user.id
   }).then(function(comment) {
 		response.redirect('/myimagepost');
-		console.log("Pass at tags");
 	}).catch(function(error) {
-		console.log("Fail at tags");
 	});	
 });
 
@@ -120,35 +97,5 @@ router.get('/:id/edit', function(request, response) {
 	 	response.redirect('/myimagepost');
 	 });
  });
-
-
-
-
-
-
-// //Create Comment to Imagepost
-// router.post('/comments', function(request, response) {
-//     if(request.user){
-// 	Comment.create({
-// 		body:   request.body.body,
-// 		imagepostId: request.body.imagepostid,
-// 		author:request.user.firstname
-// 		//author: {currentUser.firstname + ' '+ currentUser.lastname}
-// 	}).then(function(comment) {
-// 		response.redirect('/imagepost');
-// 		console.log("Pass");
-// 	}).catch(function(error) {
-// 		console.log("Fail");
-// 			// response.render('../index', {
-// 			// 	imagepost:    imagepost,
-// 			// 	comment: request.body,
-// 			// 	errors:  error.errors
-// 			//});	
-// 		});
-// 	} else {
-// 		response.redirect('/user/log-in');
-// 	}
-//  });
-
 
 module.exports = router;

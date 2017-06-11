@@ -9,17 +9,15 @@ var Tag 		  = models.tag;
 var uploadHandler = multer({dest: 'public/images/imageposts'});
 var router        = express.Router();
 
-//Get All the Posts from DB
+//Get All the Imageposts from DB
 router.get('/', function(req, res) {
 	if(req.user){
 		Imagepost.findAll({
 			include:[Comment,Tag,User]
 		}).then(function(result) {
-			console.log("Ok..now look for comments");
 			res.render('imagepost/index', {
 			imageposts: result
 			})
-				console.log(JSON.stringify(result))
 		});
 	}
 	else{
@@ -28,7 +26,7 @@ router.get('/', function(req, res) {
 });
 
 
-// New.
+// Get Request for New Imagepost.
 router.get('/new', function(request, response) {
 	if (request.user)
 		response.render('imagepost/new', {
@@ -46,10 +44,8 @@ router.post('/', uploadHandler.single('image'), function(request, response) {
 		userId:        request.user.id,
 		imageFilename: (request.file && request.file.filename)
 	}).then(function(imagepost) {
-		console.log("inPICloop");
 		sharp(request.file.path)
 		.resize(490,490)
-		
 		.toFile(`${request.file.path}-thumbnail`, function() {
 			response.redirect('/imagepost');
 		});
@@ -81,13 +77,8 @@ router.post('/comments', function(request, response) {
 
 // Search.
 router.get('/search', function(req, res) {
-	console.log("Search test ravi");
 	var query     = req.query.tag;
-	console.log(query)
-	//var condition = `%${query}%`;
 	var condition = `${query}`;
-	console.log(condition);
-	console.log("now it should find")
 	Tag.findAndCountAll({
 		include: [Imagepost,User],
 		where: {
@@ -98,8 +89,6 @@ router.get('/search', function(req, res) {
 			}
 		}		   
 	}).then(function(result) {
-		console.log(result.rows);
-		console.log(JSON.stringify(result));
 		res.render('imagepost/search', {
 		query: query,
 		count: result.count,
