@@ -20,7 +20,7 @@ html
           img(src='/images/logo-blk.png') 
       .row
           ul.nav.navbar-nav.navbar-right.navbar1
-            if  currentUser
+            if currentUser
               li: p.navbar-text Signed in as #{currentUser.firstname + ' '+ currentUser.lastname}
               li: a(href='/user/log-out') Log Out        
             else

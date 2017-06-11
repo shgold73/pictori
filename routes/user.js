@@ -61,7 +61,6 @@ router.post('/sign-up', function(request, response) {
 			lastname: request.body.lastname
 		}).then(function(user) {
 			request.login(user, function(error) {
-			    console.log( request.body.email + ' ' + request.body.firstname + ' '+ request.body.lastname)
 				response.redirect('/');
 			});
 		}).catch(function(error) {
@@ -78,10 +77,11 @@ router.get('/log-in', function(request, response) {
 	response.render('user/log_in');
 });
 
-router.post('/log-in', passport.authenticate('local'), function(request, response) {
-	response.redirect('/');
-	//response.send(' You are now logged in to the Side.  Congrads!!!')
-});
+router.post('/log-in', passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/user/log-in'
+}));
+
 
 // Log out.
 router.get('/log-out', function(request, response) {

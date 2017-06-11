@@ -70,14 +70,7 @@ router.post('/comments', function(request, response) {
 		//author: {currentUser.firstname + ' '+ currentUser.lastname}
 	}).then(function(comment) {
 		response.redirect('/imagepost');
-		console.log("Pass");
 	}).catch(function(error) {
-		console.log("Fail");
-			// response.render('../index', {
-			// 	imagepost:    imagepost,
-			// 	comment: request.body,
-			// 	errors:  error.errors
-			//});	
 		});
 	} else {
 		response.redirect('/user/log-in');
