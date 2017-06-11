@@ -2,6 +2,7 @@ extends ../layout
 
 block body
 	h1.heading Log In
+	include ../errors
 	form(action='/user/log-in', method='post')
 		div.form
 			.form-horizontal
