@@ -79,7 +79,7 @@ router.get('/log-in', function(request, response) {
 
 router.post('/log-in', passport.authenticate('local', {
 	successRedirect: '/',
-	failureRedirect: '/log-in'
+	failureRedirect: '/user/log-in'
 }));
 
 
