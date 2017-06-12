@@ -14,8 +14,8 @@ block body
 									.imagepost4
 										h5= imagepost.title
 										
-										if imagepost.imageFilename
-											p: img.imagesize(src=imagepost.imageThumbnailUrl)
+										if imagepost
+											p: img.imagesize(src=imagepost.imageUrl)
 										form.imagepost11(action=`/myimagepost/${imagepost.id}/delete`, method='post')
 											input.a.btn.btn-primary.btn-xs(type='submit', value = 'Delete')
 											a.btn.btn-primary.btn-xs(href=`/myimagepost/${imagepost.id}/edit`) Edit

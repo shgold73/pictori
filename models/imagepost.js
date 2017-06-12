@@ -25,17 +25,21 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		},
 	
-		imageFilename: {
-			type:         DataTypes.STRING,
-			allowNull:    false,
-			defaultValue: '',
-			validate: {
-				notEmpty: {
-					msg: 'Image is required'
-				}
-			}
-		}
-	}, {
+		// imageFilename: {
+		// 	type:         DataTypes.STRING,
+		// 	allowNull:    false,
+		// 	defaultValue: '',
+		// 	validate: {
+		// 		notEmpty: {
+		// 			msg: 'Image is required'
+		// 		}
+		// 	}
+
+
+		//arn:aws:s3:::pictori
+		// }
+	},
+	{
 		defaultScope: {
 			order: [['createdAt', 'DESC']]
 		},
@@ -44,7 +48,8 @@ module.exports = function(sequelize, DataTypes) {
 				return('/');
 			},
 			imageUrl: function() {
-				return(`/images/imageposts/${this.imageFilename}`);
+				return(`https://s3.us-east-2.amazonaws.com/pictori/imageposts/${this.id}`);
+				 // https://s3.us-east-2.amazonaws.com/pictori/imageposts/49
 			},
 			imageThumbnailUrl: function() {
 				return(`${this.imageUrl}-thumbnail`);

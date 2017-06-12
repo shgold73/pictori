@@ -6,8 +6,13 @@ var User          = models.user;
 var Imagepost     = models.imagepost;
 var Comment       = models.comment;
 var Tag 		  = models.tag;
-var uploadHandler = multer({dest: 'public/images/imageposts'});
+var uploadHandler = multer();
+var aws           = require('aws-sdk');
+var s3 = new aws.S3({region:'us-east-2'});
 var router        = express.Router();
+
+//S3 Stuff
+
 
 //Get All the Imageposts from DB
 router.get('/', function(req, res) {
@@ -29,33 +34,104 @@ router.get('/', function(req, res) {
 // Get Request for New Imagepost.
 router.get('/new', function(request, response) {
 	if (request.user)
-		response.render('imagepost/new', {
-			imagepost: {}
-		});
+		response.render('imagepost/new', { imagepost: {} });
 	else
 		response.redirect('/user/log-in');
 });
+
+// // Create New Image Post
+// router.post('/', uploadHandler.single('image'), function(request, response) {
+// 	Imagepost.create({
+// 		title:         request.body.title,
+// 		body:          request.body.body,
+// 		userId:        request.user.id
+// 	}).then(function(imagepost) {
+// 		sharp(request.file.buffer)
+// 		.resize(490,490)
+// 		.toBuffer()
+// 	}).catch(function(error) {
+// 		response.render('imagepost/new', {
+// 			imagepost:   request.body,
+// 			errors: error.errors
+// 		});
+// 	});
+// });
 
 // Create New Image Post
 router.post('/', uploadHandler.single('image'), function(request, response) {
 	Imagepost.create({
 		title:         request.body.title,
 		body:          request.body.body,
-		userId:        request.user.id,
-		imageFilename: (request.file && request.file.filename)
+		userId:        request.user.id
+		//imageFilename: (request.file && request.file.filename)
 	}).then(function(imagepost) {
-		sharp(request.file.path)
-		.resize(490,490)
-		.toFile(`${request.file.path}-thumbnail`, function() {
-			response.redirect('/imagepost');
+		sharp(request.file.buffer)
+		.resize(490, 490)
+		// .max()
+		// .withoutEnlargement()
+		.toBuffer()
+		.then(function(thumbnail) {
+			console.log("in the loop I want to be in");
+			s3.upload({
+				Bucket:     'pictori',
+				Key:        `imageposts/${imagepost.id}`,
+				Body:        request.file.buffer,
+				ACL:        'public-read',
+				ContentType: request.file.mimetype
+			}, function(error, data) {
+				console.log("in inner loop");
+
+				s3.upload({
+					Bucket:     'pictori',
+					Key:        `imageposts/${imagepost.id}-thumbnail`,
+					Body:        thumbnail,
+					ACL:        'public-read',
+					ContentType: request.file.mimetype
+				}, function(error, data) {
+					response.redirect('/');
+				});
+			});
 		});
 	}).catch(function(error) {
+		console.log("testttttttt");
 		response.render('imagepost/new', {
-			imagepost:   request.body,
+
+			imageposts:   request.body,
 			errors: error.errors
 		});
 	});
 });
+
+// //
+// then(function(post) {
+// 		sharp(request.file.buffer)
+// 		.resize(300, 300)
+// 		.max()
+// 		.withoutEnlargement()
+// 		.toBuffer()
+// 		.then(function(thumbnail) {
+// 			s3.upload({
+// 				Bucket:     'blog-february-2017',
+// 				Key:        `posts/${post.id}`,
+// 				Body:        request.file.buffer,
+// 				ACL:        'public-read',
+// 				ContentType: request.file.mimetype
+// 			}, function(error, data) {
+// 				s3.upload({
+// 					Bucket:     'blog-february-2017',
+// 					Key:        `posts/${post.id}-thumbnail`,
+// 					Body:        thumbnail,
+// 					ACL:        'public-read',
+// 					ContentType: request.file.mimetype
+// 				}, function(error, data) {
+// 					response.redirect(post.url);
+// 				});
+// 			});
+// 		});
+
+
+
+//
 
 //Create Comment to Imagepost
 router.post('/comments', function(request, response) {
@@ -96,5 +172,8 @@ router.get('/search', function(req, res) {
 		});
 	});
 });
+
+
+
 
 module.exports = router;

@@ -12,8 +12,8 @@ if imageposts
 							.tagtext
 								each tag in imagepost.tags
 									a.btn.tagtext1.fa.fa-tag(href=`/imagepost/search/?tag=${tag.tag}`)= tag.tag
-							if imagepost.imageFilename
-								p: img(src=imagepost.imageThumbnailUrl)
+							if imagepost
+								p: img(style ="width:490px;height:490px" src=imagepost.imageUrl)
 								.imagepost3
 									a.btn-default.fa.fa-heart-o(href='/')
 							ul
