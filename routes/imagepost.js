@@ -80,7 +80,7 @@ router.post('/', uploadHandler.single('image'), function(request, response) {
 				ContentType: request.file.mimetype
 			}, function(error, data) {
 				console.log("in inner loop");
-
+				JSON.stringify(imagepost);
 				s3.upload({
 					Bucket:     'pictori',
 					Key:        `imageposts/${imagepost.id}-thumbnail`,
@@ -102,36 +102,7 @@ router.post('/', uploadHandler.single('image'), function(request, response) {
 	});
 });
 
-// //
-// then(function(post) {
-// 		sharp(request.file.buffer)
-// 		.resize(300, 300)
-// 		.max()
-// 		.withoutEnlargement()
-// 		.toBuffer()
-// 		.then(function(thumbnail) {
-// 			s3.upload({
-// 				Bucket:     'blog-february-2017',
-// 				Key:        `posts/${post.id}`,
-// 				Body:        request.file.buffer,
-// 				ACL:        'public-read',
-// 				ContentType: request.file.mimetype
-// 			}, function(error, data) {
-// 				s3.upload({
-// 					Bucket:     'blog-february-2017',
-// 					Key:        `posts/${post.id}-thumbnail`,
-// 					Body:        thumbnail,
-// 					ACL:        'public-read',
-// 					ContentType: request.file.mimetype
-// 				}, function(error, data) {
-// 					response.redirect(post.url);
-// 				});
-// 			});
-// 		});
 
-
-
-//
 
 //Create Comment to Imagepost
 router.post('/comments', function(request, response) {
