@@ -15,10 +15,9 @@ block body
 								p= imagepost.imagepost.author 
 								p= imagepost.imagepost.body
 								h5= imagepost.user.firstname + ' '+imagepost.user.lastname
-								if imagepost.imagepost.imageFilename
-									p: img(src=imagepost.imagepost.imageThumbnailUrl)
-									.imagepost3
-										a.btn-default.fa.fa-heart-o(href='/')
+								p: img(style ="width:490px;height:490px" src=`https://s3.us-east-2.amazonaws.com/pictori/imageposts/${imagepost.imagepost.id}`)
+								.imagepost3
+									a.btn-default.fa.fa-heart-o(href='/')
 								.tagtext
 									a.btn.tagtext1.fa.fa-tag(href=`/imagepost/search/?tag=${imagepost.tag}`)= imagepost.tag
 								
